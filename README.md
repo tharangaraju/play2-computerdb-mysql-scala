@@ -1,43 +1,20 @@
 Play framework 2 scala computer-database sample application with mysql
 ============================
 
-This project just takes the computer-database sample project, scala version, and modifies it to work with mysql database.
+This project is a fork of the openshift-play2-computerdb repo, which took the computer-database sample project, scala version, and modified it to work with a mysql database.
 
-It's main purpouse is to demonstrate how to deploy a play framework 2 application on openshift.
+This project was tested on Play 2.1.1, Scala 2.10.0, MySQL, 5.5.29, and Java 1.6_0_45 
 
-To get up and running with openshift, check this quickstart: https://github.com/opensas/play2-openshift-quickstart
-
-These are the steps you have to follow to deploy this app on openshift:
-
-A step by step example: deploying computer-database sample app to openshift
--------------------------
-
-Create the computerdb application on openshift, with mysql and phpadmin support.
-
-```bash
-    rhc app create -a computerdb -t diy-0.1
-    rhc app cartridge add -a computerdb -c mysql-5.1
-    rhc app cartridge add -a computerdb -c phpmyadmin-3.4
-```
-
-Add upstream repo
-
-```
-    cd computerdb
-    git remote add upstream https://github.com/opensas/openshift-play2-computerdb.git
-    git pull -s recursive -X theirs upstream master
-```
-
-Run the stage task, add your changes to git's index, commit and push the repo to openshift (you can also just run the *openshift_deploy* script):
-
-    play clean compile stage
-    git add .
-    git commit -m "deploying computerdb application with mysql support"
-    git push
-
-That's it, you can now see computerdb demo application running at:
-
-    http://computerdb-yournamespace.rhcloud.com
+How to install and run
+----------------------------
+* Modify conf/application.conf and specify mysql url, port, database, user, and pass
+* If necessary, update your sbt.version in project/build.properties
+* Ensure MySQL is running and that the database was created
+* From the root directory run 'play -DapplyEvolutions.default=true start'
+* On subsequent runs you don't need to applyEvolutions, so 'play start' should work
+for production mode, or 'play run' for developer mode.
+* Afterwards, the sample should work just like the original play sample except
+now changes will persist in between server shutdowns
 
 List of changes needed to port computer-database sample app from H2 to mysql
 ----------------------------

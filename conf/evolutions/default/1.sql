@@ -1,7 +1,6 @@
 # --- First database schema
 
 # --- !Ups
-
 create table company (
   id                        bigint not null auto_increment,
   name                      varchar(255) not null,
