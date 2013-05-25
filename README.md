@@ -16,6 +16,13 @@ for production mode, or 'play run' for developer mode.
 * Afterwards, the sample should work just like the original play sample except
 now changes will persist in between server shutdowns
 
+Demo
+----------------------------
+View a live demo running at http://dev1.minh.io
+
+(Eventually I'll update this to have it run on Heroku...)
+
+
 List of changes needed to port computer-database sample app from H2 to mysql
 ----------------------------
 
